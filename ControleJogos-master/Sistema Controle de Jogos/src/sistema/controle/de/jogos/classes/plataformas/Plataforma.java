@@ -13,13 +13,11 @@ public abstract class Plataforma {
     protected String nomePlat;
     protected int codPlataforma;
     protected boolean emJogo;
-    protected boolean possuiPlataforma;
     protected boolean VR;
     protected boolean iniciarVR;
     
     Plataforma(){
         this.emJogo = false;
-        this.possuiPlataforma = false;
         this.VR = false;
         this.iniciarVR = false;
         
@@ -43,6 +41,9 @@ public abstract class Plataforma {
     }
     public int getCodPlat(){
         return this.codPlataforma;
+    }
+    public boolean getVR(){
+        return this.VR;
     }
     
     public boolean equals(Plataforma a, String plataforma) {

@@ -19,11 +19,15 @@ public class Jogo {
     protected String tema;
     protected Float valor;
     protected int hype;
+    protected boolean jogoVR;
     
     public Jogo(){
-        
+        this.jogoVR = false;
     }
     
+    public void setJogoVR(boolean jogoVR){
+        this.jogoVR = jogoVR;
+    }
     public void setTitulo(String titulo){
         this.titulo = titulo;
     }
@@ -37,8 +41,23 @@ public class Jogo {
     public String getTema(){
         return this.tema;
     }
-    
+    public Plataforma getPlataformasValidas(int codPlat, ArrayList<Plataforma> plataformasExistentes){
+        for(Plataforma a : plataformasExistentes){
+            if (a.getCodPlat() == codPlat){
+                return a;
+            }
+        }
+        return null;
+    }
     public void setPlataformaJogo(int codPlat, ArrayList<Plataforma> plataformasExistentes) throws PlataformaInexistente{
+        Plataforma aux = this.getPlataformasValidas(codPlat, plataformasExistentes);
+        if (aux != null)
+            this.plataforma = aux.getPlataforma();
+        
+        else
+            throw new PlataformaInexistente(plataforma + "inexistente\n");
+
+        /*
         boolean existe = false;
         for(Plataforma a : plataformasExistentes){
             if (a.getCodPlat() == codPlat){
@@ -49,12 +68,14 @@ public class Jogo {
         if(existe == false){
             throw new PlataformaInexistente(plataforma + "inexistente\n");
         }
+*/
     }
     
     public void setValor(Float valor) throws NumberFormatException{
         
         if (valor < 0.0){
             this.setValor(Float.parseFloat(JOptionPane.showInputDialog("Valor não pode ser negativo!\n Insira o valor: ")));
+            throw new NumberFormatException();
         }
         else{
             this.valor = valor;
@@ -67,4 +88,5 @@ public class Jogo {
     public Float getValor(){
         return this.valor;
     }
+    
 }

@@ -5,13 +5,13 @@
  */
 package sistema.controle.de.jogos.classes;
 
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import sistema.controle.de.jogos.classes.plataformas.*;
-import sistema.controle.de.jogos.classes.jogos.Acao;
-import sistema.controle.de.jogos.classes.jogos.Jogo;
 import sistema.controle.de.jogos.classes.usuario.Usuario;
 import sistema.controle.de.jogos.excecoes.*;
+import sistema.controle.de.jogos.interfaces.IVR;
 
 /**
  *
@@ -23,7 +23,7 @@ public class ControleJogos {
     
     private Plataforma configPlataforma(){
         Plataforma plataforma = null;
-        int opcPlat = Integer.parseInt(JOptionPane.showInputDialog("Plataforma Inicial: \n"
+        int opcPlat = Integer.parseInt(JOptionPane.showInputDialog("Plataforma: \n"
                 + "1- XBox One\n"
                 + "2- PlayStation 4\n"
                 + "3- Nintendo Switch\n"
@@ -32,15 +32,21 @@ public class ControleJogos {
             case 1:
                 plataforma = new XBoxOne();
                 break;
+            case 2:
+                plataforma = new PS4();
+                break;
             case 3:
                 plataforma = new Switch();
+                break;
+            case 4:
+                plataforma = new Pc();
                 break;
         }
         return (plataforma);
     }
     
     public void addNovoUsuario(){
-        String login, senha, plataforma;
+        String login, senha;
         Usuario novoUsuario = new Usuario();
         login = JOptionPane.showInputDialog("Login novo usuário: ");
         senha = JOptionPane.showInputDialog("Senha novo usuário(min. 8 caracteres): ");
@@ -91,5 +97,43 @@ public class ControleJogos {
     }
     public String listaDesejo(){
         return this.usuarioAtual.mostrarBiblioteca(2);
+    }
+    public void excluirJogo(String titulo){
+        this.usuarioAtual.excluir(titulo);
+    }
+    public void organizarPorTitulo(){
+        this.usuarioAtual.organizar(1);
+    }
+    public void organizarPorTema(){
+        this.usuarioAtual.organizar(2);
+    }
+    public void organizarPorValor(){
+        this.usuarioAtual.organizar(3);
+    }
+    public void configuracoesPlats(){
+        Plataforma aux;
+        int conf = Integer.parseInt(JOptionPane.showInputDialog("Selecione o que deseja configurar: "
+            + "\n1- Adquirir VR para uma plataforma;"
+            + "\n2- Ver jogos exclusivos;"
+            + "\n3- Iniciar VR"
+            + "\n4- Fechar VR"));
+        int opcPlat = Integer.parseInt(JOptionPane.showInputDialog("Plataforma: \n"
+            + "1- XBox One\n"
+            + "2- PlayStation 4\n"
+            + "3- Nintendo Switch\n"
+            + "4- PC\n"));
+        aux = this.usuarioAtual.getPlataformasValidasUsuario(opcPlat);
+        if (aux != null){
+            switch(conf){
+                case 1:
+                    if(aux instanceof IVR){
+                        ((IVR) aux).adquirirVR();
+                    }
+                    else
+                        JOptionPane.showInputDialog("Plataforma não suporta VR.");
+                    break;
+                case 2:
+            }
+        }
     }
 }

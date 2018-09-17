@@ -8,10 +8,12 @@ package sistema.controle.de.jogos.classes.usuario;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.util.Comparator;
+import java.util.Collections;
 import sistema.controle.de.jogos.classes.plataformas.*;
-import sistema.controle.de.jogos.classes.jogos.Acao;
 import sistema.controle.de.jogos.classes.jogos.Jogo;
 import sistema.controle.de.jogos.excecoes.PlataformaInexistente;
+import sistema.controle.de.jogos.interfaces.IVR;
 
 /**
  *
@@ -30,7 +32,8 @@ public class Usuario {
     }
     public void adicionarBiblioteca(int opcLista) throws PlataformaInexistente{
         Jogo addJ = new Jogo();
-        boolean valorValido = false;
+        String auxStr;
+        boolean valorValido = false, possuiVR = false;
         addJ.setTitulo(JOptionPane.showInputDialog("Titulo do jogo: "));
         addJ.setTema(JOptionPane.showInputDialog("Tema do jogo: "));
      
@@ -45,16 +48,30 @@ public class Usuario {
                 + "2- PlayStation 4\n"
                 + "3- Nintendo Switch\n"
                 + "4- PC\n"));
+                
                 addJ.setPlataformaJogo(opcPlat, this.plataformasUsuario);
                 break;
             }
             catch(NumberFormatException n){
                 valorValido = false;
-                JOptionPane.showMessageDialog(null, "\nValor não pode ser diferente de Float");
+                JOptionPane.showMessageDialog(null, "Por favor, insira apenas digitos válidos");
             }
             catch(PlataformaInexistente p){
-                JOptionPane.showMessageDialog(null, "\nUsuário não possui essa plataforma");
+                JOptionPane.showMessageDialog(null, "Usuário não possui essa plataforma");
             }
+        }
+        auxStr = JOptionPane.showInputDialog("Jogo é VR? (s/n)");
+        if(auxStr.equals("s")){
+            for (Plataforma x : this.plataformasUsuario){
+                if(x instanceof IVR){
+                    addJ.setJogoVR(true);
+                    possuiVR = true;
+                    break;
+                }
+            }
+            if (!possuiVR)
+                JOptionPane.showMessageDialog(null, "Plataforma não possui VR");
+
         }
         if (opcLista == 1)
             this.biblioteca.add(addJ);
@@ -120,6 +137,48 @@ public class Usuario {
         Jogo addJ = new Jogo();
         addJ.setTitulo(JOptionPane.showInputDialog("Titulo do jogo: "));
         addJ.setTema(JOptionPane.showInputDialog("Tema do jogo: "));
-        
+    }
+    public void excluir(String titulo){
+            Jogo auxJogos = null;
+            boolean remover = false;
+        for (Jogo x : this.listaDesejo){
+            if(x.getTitulo().compareToIgnoreCase(titulo) == 0){
+                auxJogos = x;
+                remover = true;
+            }
+        }
+        if (remover){
+            this.listaDesejo.remove(auxJogos);
+            JOptionPane.showMessageDialog(null, "Jogo excluido com sucesso!");
+        }
+    }
+    
+    public void organizar(int codOrganizar){ //cod 1= organizar por titulo, 2= tema, 3= valor
+        Collections.sort(this.biblioteca, new Comparator() {
+            @Override
+            public int compare(Object t, Object t1) {
+                Jogo c1 = (Jogo) t;  
+		Jogo c2 = (Jogo) t1;  
+                switch (codOrganizar) {
+                    case 1:
+                        return c1.getTitulo().compareToIgnoreCase(c2.getTitulo());
+                    case 2:
+                        return c1.getTema().compareToIgnoreCase(c2.getTema());
+                    case 3:
+                        return c1.getValor().compareTo(c2.getValor());
+                    default:
+                        return 0;
+                }
+            }
+        }) ;
+        }
+
+    public Plataforma getPlataformasValidasUsuario(int opcPlat) {
+        for(Plataforma a : this.plataformasUsuario){
+            if (a.getCodPlat() == opcPlat){
+                return a;
+            }
+        }
+        return null;
     }
 }

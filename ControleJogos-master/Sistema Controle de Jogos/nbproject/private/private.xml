@@ -3,14 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ramon/Desktop/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/jogos/Acao.java</file>
-            <file>file:/C:/Users/ramon/Desktop/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/plataformas/Plataforma.java</file>
-            <file>file:/C:/Users/ramon/Desktop/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/Main.java</file>
-            <file>file:/C:/Users/ramon/Desktop/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/usuario/Usuario.java</file>
-            <file>file:/C:/Users/ramon/Desktop/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/jogos/Jogo.java</file>
-            <file>file:/C:/Users/ramon/Desktop/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/plataformas/Switch.java</file>
-            <file>file:/C:/Users/ramon/Desktop/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/plataformas/XBoxOne.java</file>
-            <file>file:/C:/Users/ramon/Desktop/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/ControleJogos.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/ControleJogos.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/plataformas/XBoxOne.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/plataformas/PS4.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/usuario/Usuario.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/plataformas/Plataforma.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/jogos/Jogo.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/excecoes/PlataformaInexistente.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/Main.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/plataformas/Switch.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/interfaces/IVR.java</file>
+            <file>file:/C:/Users/ramon/Google%20Drive/ControleJogos-master/Sistema%20Controle%20de%20Jogos/src/sistema/controle/de/jogos/classes/plataformas/Pc.java</file>
         </group>
     </open-files>
 </project-private>
