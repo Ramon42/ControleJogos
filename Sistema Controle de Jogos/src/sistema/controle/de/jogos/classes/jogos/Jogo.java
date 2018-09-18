@@ -13,16 +13,28 @@ import sistema.controle.de.jogos.excecoes.*;
  *
  * @author ramon
  */
-public abstract class Jogo {
+public class Jogo {
     protected String titulo;
     protected String plataforma;
+    protected String tema;
     protected Float valor;
-    protected int hype;
+    protected boolean jogoVR;
+    protected int codExclusivo; //0 = não é exclusivo
     
-    Jogo(){
-        
+    public Jogo(){
+        this.jogoVR = false;
+        this.codExclusivo = 0;
     }
     
+    public void setCodExclusivo(int cod){
+        this.codExclusivo = cod;
+    }
+    public int getCodExclusivo(){
+        return this.codExclusivo;
+    }
+    public void setJogoVR(boolean jogoVR){
+        this.jogoVR = jogoVR;
+    }
     public void setTitulo(String titulo){
         this.titulo = titulo;
     }
@@ -30,23 +42,47 @@ public abstract class Jogo {
         return this.titulo;
     }
     
-    public void setPlataformaJogo(String plataforma, ArrayList<Plataforma> plataformasExistentes) throws PlataformaInexistente{
+    public void setTema(String tema){
+        this.tema = tema;
+    }
+    public String getTema(){
+        return this.tema;
+    }
+    public Plataforma getPlataformasValidas(int codPlat, ArrayList<Plataforma> plataformasExistentes){
+        for(Plataforma a : plataformasExistentes){
+            if (a.getCodPlat() == codPlat){
+                return a;
+            }
+        }
+        return null;
+    }
+    public void setPlataformaJogo(int codPlat, ArrayList<Plataforma> plataformasExistentes) throws PlataformaInexistente{
+        Plataforma aux = this.getPlataformasValidas(codPlat, plataformasExistentes);
+        if (aux != null)
+            this.plataforma = aux.getPlataforma();
+        
+        else
+            throw new PlataformaInexistente(plataforma + "inexistente\n");
+
+        /*
         boolean existe = false;
         for(Plataforma a : plataformasExistentes){
-            existe = a.equals(a, plataforma);
+            if (a.getCodPlat() == codPlat){
+                this.plataforma = a.getPlataforma();
+                existe = true;
+            }
         }
         if(existe == false){
             throw new PlataformaInexistente(plataforma + "inexistente\n");
         }
-        else{
-            this.plataforma = plataforma;
-        }
+*/
     }
     
     public void setValor(Float valor) throws NumberFormatException{
         
         if (valor < 0.0){
             this.setValor(Float.parseFloat(JOptionPane.showInputDialog("Valor não pode ser negativo!\n Insira o valor: ")));
+            throw new NumberFormatException();
         }
         else{
             this.valor = valor;
@@ -59,4 +95,5 @@ public abstract class Jogo {
     public Float getValor(){
         return this.valor;
     }
+    
 }

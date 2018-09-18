@@ -11,6 +11,4 @@ package sistema.controle.de.jogos.interfaces;
  */
 public interface IVR {
     public void adquirirVR();
-    public void iniciarVR();
-    public void fecharVR();
 }

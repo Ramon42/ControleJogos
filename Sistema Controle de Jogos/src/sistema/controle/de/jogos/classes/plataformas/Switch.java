@@ -10,5 +10,8 @@ package sistema.controle.de.jogos.classes.plataformas;
  * @author ramon
  */
 public class Switch extends Plataforma{
-    
+    public Switch(){
+        this.nomePlat = "Switch";
+        this.codPlataforma = 3;
+    }
 }

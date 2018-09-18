@@ -4,25 +4,22 @@
  * and open the template in the editor.
  */
 package sistema.controle.de.jogos.classes.plataformas;
-
 import sistema.controle.de.jogos.interfaces.IVR;
 
 /**
  *
  * @author ramon
  */
-public class XBoxOne extends Plataforma implements IVR{
-    public XBoxOne(){
-        this.nomePlat = "XBox One";
-        this.codPlataforma = 1;
+public class Pc extends Plataforma implements IVR{
+    
+    public Pc(){
+        this.nomePlat = "PC";
+        this.codPlataforma = 4;
     }
 
-    
     @Override
     public void adquirirVR() {
         this.VR = true;
     }
 
-
-    
 }

@@ -11,18 +11,16 @@ import sistema.controle.de.jogos.interfaces.IVR;
  *
  * @author ramon
  */
-public class XBoxOne extends Plataforma implements IVR{
-    public XBoxOne(){
-        this.nomePlat = "XBox One";
-        this.codPlataforma = 1;
+public class PS4 extends Plataforma implements IVR{
+    
+    public PS4(){
+        this.nomePlat = "PlayStation 4";
+        this.codPlataforma = 2;
     }
 
-    
     @Override
     public void adquirirVR() {
         this.VR = true;
     }
 
-
-    
 }
