@@ -8,6 +8,7 @@ package sistema.controle.de.jogos.classes;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import sistema.controle.de.jogos.classes.jogos.Jogo;
 import sistema.controle.de.jogos.classes.plataformas.*;
 import sistema.controle.de.jogos.classes.usuario.Usuario;
 import sistema.controle.de.jogos.excecoes.*;
@@ -92,12 +93,14 @@ public class ControleJogos {
         return this.usuarioAtual.getUsuario();
     }
     
+    //usar sobrecarga
     public String bibliotecaAtual(){
         return this.usuarioAtual.mostrarBiblioteca(1);
     }
     public String listaDesejo(){
         return this.usuarioAtual.mostrarBiblioteca(2);
     }
+    //
     public void excluirJogo(String titulo){
         this.usuarioAtual.excluir(titulo);
     }
@@ -112,11 +115,11 @@ public class ControleJogos {
     }
     public void configuracoesPlats(){
         Plataforma aux;
+        ArrayList<Jogo> auxExclusivo = new ArrayList();
+        ArrayList<Jogo> biblioteca = this.usuarioAtual.getBiblioteca();
         int conf = Integer.parseInt(JOptionPane.showInputDialog("Selecione o que deseja configurar: "
             + "\n1- Adquirir VR para uma plataforma;"
-            + "\n2- Ver jogos exclusivos;"
-            + "\n3- Iniciar VR"
-            + "\n4- Fechar VR"));
+            + "\n2- Ver jogos exclusivos;"));
         int opcPlat = Integer.parseInt(JOptionPane.showInputDialog("Plataforma: \n"
             + "1- XBox One\n"
             + "2- PlayStation 4\n"
@@ -133,7 +136,16 @@ public class ControleJogos {
                         JOptionPane.showInputDialog("Plataforma não suporta VR.");
                     break;
                 case 2:
+                    for(Jogo x : biblioteca){
+                        if (x.getCodExclusivo() == opcPlat){
+                            auxExclusivo.add(x);
+                        }
+                    }
+                    JOptionPane.showMessageDialog(null, this.usuarioAtual.mostrarBiblioteca(auxExclusivo));
             }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Usuário não possui essa plataforma.");
         }
     }
 }

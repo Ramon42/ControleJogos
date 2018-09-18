@@ -14,17 +14,25 @@ import sistema.controle.de.jogos.excecoes.*;
  * @author ramon
  */
 public class Jogo {
-    protected String titulo;
-    protected String plataforma;
-    protected String tema;
-    protected Float valor;
-    protected int hype;
-    protected boolean jogoVR;
+    private String titulo;
+    private String plataforma;
+    private String tema;
+    private Float valor;
+    private boolean jogoVR;
+    private int codExclusivo; //0 = não é exclusivo
     
     public Jogo(){
+        this.titulo = "default";
         this.jogoVR = false;
+        this.codExclusivo = 0;
     }
     
+    public void setCodExclusivo(int cod){
+        this.codExclusivo = cod;
+    }
+    public int getCodExclusivo(){
+        return this.codExclusivo;
+    }
     public void setJogoVR(boolean jogoVR){
         this.jogoVR = jogoVR;
     }

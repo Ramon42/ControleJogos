@@ -5,6 +5,7 @@
  */
 package sistema.controle.de.jogos;
 
+import static javafx.application.Platform.exit;
 import javax.swing.JOptionPane;
 import sistema.controle.de.jogos.classes.ControleJogos;
 import sistema.controle.de.jogos.excecoes.*;
@@ -22,18 +23,25 @@ public class Main {
         controle.addNovoUsuario();
         
         do{
-            opcao = Integer.parseInt(JOptionPane.showInputDialog("Usuário: "+controle.getUsuarioAtual()
-                    + "\n\n 1- Adicionar novo jogo à biblioteca;"
-                    + "\n 2- Adicionar novo jogo à lista de desejos;"
-                    + "\n 3- Adicionar plataforma;"
-                    + "\n 4- Mostrar biblioteca;"
-                    + "\n 5- Mostrar lista de desejos;"
-                    + "\n 6- Organizar biblioteca;"
-                    + "\n 7- Remover jogo da lista de desejos;"
-                    + "\n 8- Opções de console;"
-                    + "\n 9- Adicionar Usuário;"
-                    + "\n 10- Trocar Usuário;"
-                    + "\n 15- Fechar programa.")); //sugerir jogos com hype baixo
+            while (true){
+                try{
+                    opcao = Integer.parseInt(JOptionPane.showInputDialog("Usuário: "+controle.getUsuarioAtual()
+                            + "\n\n 1- Adicionar novo jogo à biblioteca;"
+                            + "\n 2- Adicionar novo jogo à lista de desejos;"
+                            + "\n 3- Adicionar plataforma;"
+                            + "\n 4- Mostrar biblioteca;"
+                            + "\n 5- Mostrar lista de desejos;"
+                            + "\n 6- Organizar biblioteca;"
+                            + "\n 7- Remover jogo da lista de desejos;"
+                            + "\n 8- Opções de console;"
+                            + "\n 9- Adicionar Usuário;"
+                            + "\n 10- Trocar Usuário;"
+                            + "\n 11- Fechar programa."));
+                    break;
+                }catch (NumberFormatException e){
+                    JOptionPane.showMessageDialog(null, "Por favor, insira apenas digitos válidos");
+                }
+            }
             switch(opcao){
                 case 1:
                     controle.novoItemBiblioteca();
@@ -75,7 +83,7 @@ public class Main {
                     controle.excluirJogo(auxExcluir);
                     break;
                 case 8:
-                    
+                    controle.configuracoesPlats();
                     break;
                 case 9:
                     controle.addNovoUsuario();
@@ -83,8 +91,13 @@ public class Main {
                 case 10:
                     controle.fazerLogin();
                     break;
+                case 11:
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Insira uma opção válida!");
+                    break;
             }
-        }while (opcao != 15); 
+        }while (opcao != 11); 
     }
     
 }

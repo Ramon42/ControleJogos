@@ -14,5 +14,4 @@ public class Switch extends Plataforma{
         this.nomePlat = "Switch";
         this.codPlataforma = 3;
     }
-    
 }

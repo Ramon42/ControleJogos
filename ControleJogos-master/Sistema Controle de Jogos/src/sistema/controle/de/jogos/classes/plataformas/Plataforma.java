@@ -12,27 +12,15 @@ package sistema.controle.de.jogos.classes.plataformas;
 public abstract class Plataforma {
     protected String nomePlat;
     protected int codPlataforma;
-    protected boolean emJogo;
     protected boolean VR;
     protected boolean iniciarVR;
     
     Plataforma(){
-        this.emJogo = false;
         this.VR = false;
         this.iniciarVR = false;
         
     }
-    public static <T> String nomeClasse(T t){
-        return t.getClass().getName();
-    }
-    
-    public void iniciarJogo(){
-        this.emJogo = true;
-    }
-    public void fecharJogo(){
-        this.emJogo = false;
-    }
-    
+
     public void setPlataforma(String plataforma){
         this.nomePlat = plataforma;
     }
@@ -44,10 +32,6 @@ public abstract class Plataforma {
     }
     public boolean getVR(){
         return this.VR;
-    }
-    
-    public boolean equals(Plataforma a, String plataforma) {
-        return nomeClasse(a).equals(plataforma);
     }
     
 }

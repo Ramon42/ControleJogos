@@ -22,17 +22,7 @@ public class XBoxOne extends Plataforma implements IVR{
     public void adquirirVR() {
         this.VR = true;
     }
-    @Override
-    public void iniciarVR() {
-        if(this.VR)
-            this.iniciarVR = true;
-    }
 
-    @Override
-    public void fecharVR() {
-        if(this.VR)
-            this.iniciarVR = false;
-    }
 
     
 }

@@ -32,7 +32,8 @@ public class Usuario {
     }
     public void adicionarBiblioteca(int opcLista) throws PlataformaInexistente{
         Jogo addJ = new Jogo();
-        String auxStr;
+        int opcPlat;
+        String auxStr, exclusivo;
         boolean valorValido = false, possuiVR = false;
         addJ.setTitulo(JOptionPane.showInputDialog("Titulo do jogo: "));
         addJ.setTema(JOptionPane.showInputDialog("Tema do jogo: "));
@@ -43,7 +44,7 @@ public class Usuario {
                     addJ.setValor(Float.parseFloat(JOptionPane.showInputDialog("Valor jogo: ")));
                     valorValido = true;
                 }
-                int opcPlat = Integer.parseInt(JOptionPane.showInputDialog("Plataforma: \n"
+                opcPlat = Integer.parseInt(JOptionPane.showInputDialog("Plataforma: \n"
                 + "1- XBox One\n"
                 + "2- PlayStation 4\n"
                 + "3- Nintendo Switch\n"
@@ -60,10 +61,11 @@ public class Usuario {
                 JOptionPane.showMessageDialog(null, "Usuário não possui essa plataforma");
             }
         }
+        exclusivo = JOptionPane.showInputDialog("Jogo é exclusivo? s/n");
         auxStr = JOptionPane.showInputDialog("Jogo é VR? (s/n)");
         if(auxStr.equals("s")){
             for (Plataforma x : this.plataformasUsuario){
-                if(x instanceof IVR){
+                if(x instanceof IVR && x.getCodPlat() == opcPlat){
                     addJ.setJogoVR(true);
                     possuiVR = true;
                     break;
@@ -71,23 +73,35 @@ public class Usuario {
             }
             if (!possuiVR)
                 JOptionPane.showMessageDialog(null, "Plataforma não possui VR");
-
         }
+        
+        if(exclusivo.equals("s"))
+            addJ.setCodExclusivo(opcPlat);
+        
         if (opcLista == 1)
             this.biblioteca.add(addJ);
         else if (opcLista == 2)
             this.listaDesejo.add(addJ);
     }
-    
-    public String mostrarBiblioteca(int opcLista){
+    public String mostrarBiblioteca(int opcMostrar){
         String aux = "";
-        ArrayList<Jogo> auxJogos = null;
-        if(opcLista == 1){
+        ArrayList<Jogo> auxJogos;
+        if (opcMostrar == 1)
             auxJogos = this.biblioteca;
-        }
-        else if(opcLista == 2){
+        else
             auxJogos = this.listaDesejo;
+        for(Jogo j : auxJogos){
+            aux += "Titulo: " + j.getTitulo() + "\n";
+            aux += "Tema: " + j.getTema() + "\n";
+            aux += "Plataforma: " + j.getPlataforma() + "\n";
+            aux += "Valor: R$" + this.df.format(j.getValor()) + "\n";
+            aux += "\n\n";
         }
+        return (aux);
+    }
+    //Sobrecarga
+    public String mostrarBiblioteca(ArrayList<Jogo> auxJogos){
+        String aux = "";
         for(Jogo j : auxJogos){
             aux += "Titulo: " + j.getTitulo() + "\n";
             aux += "Tema: " + j.getTema() + "\n";
@@ -100,6 +114,9 @@ public class Usuario {
     
     public ArrayList getBiblioteca(){
         return this.biblioteca;
+    }
+    public ArrayList getListaDesejo(){
+        return this.listaDesejo;
     }
     public String getUsuario(){
         return this.nomeUsuario;
@@ -181,4 +198,5 @@ public class Usuario {
         }
         return null;
     }
+    
 }
