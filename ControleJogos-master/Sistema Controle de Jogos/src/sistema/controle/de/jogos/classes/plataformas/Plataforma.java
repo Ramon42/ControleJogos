@@ -5,6 +5,8 @@
  */
 package sistema.controle.de.jogos.classes.plataformas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ramon
@@ -32,6 +34,9 @@ public abstract class Plataforma {
     }
     public boolean getVR(){
         return this.VR;
+    }
+    public void setVR(boolean VR){
+        this.VR = VR;
     }
     
 }
