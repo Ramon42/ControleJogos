@@ -68,13 +68,14 @@ public class ControleJogos {
                         this.usuarioAtual = u;
                         return;
                     }
-                    else
-                        JOptionPane.showMessageDialog(null, "Senha errada!");
+                    else{
+                        JOptionPane.showMessageDialog(null, "Senha errada ou o usuário não esta cadastrado!");
+                        return;
+                    }
                 }
             }
-            else
-                JOptionPane.showMessageDialog(null, "Usuário Inexistente!");
         }
+        
     }
     public void novoItemBiblioteca() throws PlataformaInexistente{
         this.usuarioAtual.adicionarBiblioteca(1);
